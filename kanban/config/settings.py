@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'board',
     'helpdesk',
     'debug_toolbar',
-    'django_extensions'
+    'django_extensions',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

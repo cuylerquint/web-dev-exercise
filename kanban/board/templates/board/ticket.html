@@ -1,5 +1,5 @@
 {% load static %}
-<div class="card border-0 shadow m-3 mt-0" data-ticket-id="{{ ticket.id }}" data-ticket-rank="{{ ticket.rank|default_if_none:'' }}">
+<li class="ticket-card card border-0 shadow m-3 mt-0 " data-ticket-id="{{ ticket.id }}" data-ticket-rank="{{ ticket.rank|default_if_none:'' }}">
   <div class="card-body">
     <h5 class="card-title text-break text-wrap">{{ ticket.title }}</h5>
     <span class="badge rounded-pill mb-2" style="background-color: #{{ ticket.priority.color }};">{{ ticket.priority.name }}</span>
@@ -28,4 +28,4 @@
       <a href="{% url 'helpdesk:update-ticket' ticket.id %}" class="btn btn-primary btn-sm">Edit</a>
     </p>
   </div>
-</div>
+</li>

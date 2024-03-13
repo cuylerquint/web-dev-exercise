@@ -7,23 +7,30 @@
       <h1>{{ object.name }}</h1>
     </div>
   </div>
+
+  <div class="row">
+      <div class="d-flex flex-items-stretch text-nowrap pb-4">
+        <form method="GET" class="form-inline justify-content-center">{{ filter.form.as_table }} <input type="submit" /></form>
+      </div>
+  </div>
   <div class="row">
     <div class="d-flex flex-items-stretch text-nowrap pb-4">
-    {% for column in object.column_set.all %}
+
+    {% for column_id, column_dict in columns.items %}
         <div class="bg-light p-0 rounded d-inline-block shadow me-2" style="width: 20rem;">
-          <div class="sticky-top bg-light rounded p-3" style="z-index: 999;/* Less than nav menu */">
-            <h4 class="mb-0">{{ column.name }}</h4>
+          <div  class="sticky-top bg-light rounded p-3" style="z-index: 999;/* Less than nav menu */">
+            <h4 class="mb-0">{{ column_dict.name }}</h4>
           </div>
-          <div class="cards">
-            {% for ticket in column.get_tickets %}
+          <ul id="{{column_id}}" class="cards sortable connectedSortable dropZone" >
+            {% for ticket in column_dict.tickets %}
               {% include 'board/ticket.html' %}
             {% empty %}
-              <div class="text-center text-secondary">
+              <li class="text-center text-secondary">
                 <i class="bi bi-emoji-smile-fill"></i>
                 <p>No tickets in this column</p>
-              </div>
+              </li>
             {% endfor %}
-          </div>
+          </ul>
         </div>
       {% endfor %}
     </div>
